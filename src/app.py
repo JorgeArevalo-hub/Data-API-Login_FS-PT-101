@@ -6,9 +6,9 @@ from flask import Flask, request, jsonify, url_for
 from flask_migrate import Migrate
 from flask_swagger import swagger
 from flask_cors import CORS
-from utils import APIException, generate_sitemap
-from admin import setup_admin
-from models import db, User
+from api.utils import APIException, generate_sitemap
+from api.admin import setup_admin
+from api.models import db, Users
 #from models import Person
 
 app = Flask(__name__)
@@ -49,3 +49,17 @@ def handle_hello():
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
     app.run(host='0.0.0.0', port=PORT, debug=False)
+
+    from flask import Flask
+
+def create_app():
+    app = Flask(__name__)
+
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///app.db')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.secret_key = os.environ.get('FLASK_APP_KEY', 'sample key')
+
+    db.init_app(app)
+
+
+    return app
