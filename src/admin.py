@@ -1,6 +1,6 @@
 import os
 from flask_admin import Admin
-from api.models import db, Users, Items, Stats, Champions, Builds, Favourites, Builditems
+from models import db, Users, Items, Stats, Champions, Builds, Favourites, Builditems
 from flask_admin.contrib.sqla import ModelView
 
 def setup_admin(app):

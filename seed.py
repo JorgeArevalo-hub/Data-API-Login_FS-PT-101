@@ -7,7 +7,7 @@ from sqlalchemy.exc import IntegrityError
 sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
 
 from app import create_app
-from api.models import (
+from models import (
     db, Users, Champions, Items, Stats, Builds, Builditems, Favourites,
     enumGender, enumRank, enumLane
 )
